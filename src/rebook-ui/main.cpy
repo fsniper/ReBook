@@ -16,6 +16,7 @@ using namespace boost::json
 #include <string>
 #include <array>
 #include <fstream>
+#include <iomanip>
 
 std::string exec(const char* cmd) {
     std::array<char, 128> buffer;
@@ -42,7 +43,11 @@ class SearchInput: public ui::TextInput:
 
   void search_for(std::string query):
     debug "Searching for", query
-    result := std::string(exec(("/opt/rebook-go-standardebooks -action search -query " + query).c_str()))
+
+    std::stringstream quoted_query
+    quoted_query << std::quoted(query)
+
+    result := std::string(exec(("/opt/rebook-go-standardebooks -action search -query " + quoted_query.str()).c_str()))
 
     value jv = parse(result)
     books := jv.as_array()
@@ -66,11 +71,15 @@ class SearchInput: public ui::TextInput:
     pager->setup_for_render()
     pager->events.selected += [=](std::string t):
       debug "Downloading", t
+
+      std::stringstream quoted_t
+      quoted_t << std::quoted(std::string(urls.at(t)))
+
       std::string cmd = "/opt/rebook-go-standardebooks -action download -name '"
+
       cmd = cmd + t
-      cmd = cmd + "' -url '"
-      cmd = cmd + std::string(urls.at(t))
-      cmd = cmd + "'"
+      cmd = cmd + "' -url "
+      cmd = cmd + quoted_t.str()
       cmd = cmd + " -path /home/root/"
       debug cmd
       exec(cmd.c_str())
