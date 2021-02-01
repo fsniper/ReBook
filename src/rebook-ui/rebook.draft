@@ -1,0 +1,5 @@
+name=rebook
+desc=The missing bookstore for the reMarkable
+call=/opt/bin/rebook
+which=rewbook
+imgFile=rebook-logo

@@ -34,8 +34,7 @@ make
 
 For now rebook does not have a toltec package. 
 1. You need to manually add rebook binary to your launchers list.
-2. You need to copy rebook-go-standardebooks.arm into /opt/rebook-go-standardebooks
-
+2. You need to copy rebook-go-standardebooks.arm into /opt/ directory as `rebook-go-standardebooks` file
 
 ## Usage
 
