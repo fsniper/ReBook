@@ -13,11 +13,12 @@ Special thanks to:
 * https://standardebooks.org/
 * http://www.golang.org
 * https://www.python.org
-* 
+
 
 ## Build
 
-**Make sure you have gcc-arm-linux-gnueabihf and okp installed**
+* **Make sure you have gcc-arm-linux-gnueabihf and okp installed**
+* **Make sure you have go 1.15.6+ installed, go binary is in PATH, and GOPATH is set to rebook root dir.**
 
 Downlad dependencies via running makedeps.sh
 ```
