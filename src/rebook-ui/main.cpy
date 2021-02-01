@@ -93,7 +93,7 @@ int main()
   // set the scene
   ui::MainLoop::set_scene(scene)
 
-  text := new ui::Text(50, 100, 400, 40, "ReBook Search Ebooks Online")
+  text := new ui::Text(50, 100, 400, 40, "ReBook The missing book store for Remarkable.")
   label := new ui::Text(50,141, 200, 40, "Search String: ")
   textinput := new SearchInput(251,141,500,40, "")
 
