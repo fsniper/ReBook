@@ -80,8 +80,7 @@ func download(url string, author string, name string, path string) {
 
 func main() {
 
-	search_url := "https://standardebooks.org/ebooks?query={{ .Query }}&sort=newest&view=grid&per-page=10"
-	//book_url := "https://standardebooks.org/ebooks{{ .Path }}"
+	search_url := "https://standardebooks.org/ebooks?query={{ .Query }}&sort=newest&view=grid&per-page=48"
 
 	action := flag.String("action", "", "Action (search/download")
 	query := flag.String("query", "", "Search Query")
