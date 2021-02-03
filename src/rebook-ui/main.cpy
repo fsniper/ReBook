@@ -4,6 +4,7 @@
 
 using namespace std
 
+HOME_DIR := "/home/root"
 int main()
   // get the framebuffer
   fb := framebuffer::get()
@@ -11,6 +12,8 @@ int main()
   fb->clear_screen()
 
   input_scene := prep_input_scene()
+
+  chdir(HOME_DIR)
 
   // set the scene
   ui::MainLoop::set_scene(input_scene)
