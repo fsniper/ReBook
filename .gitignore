@@ -1,0 +1,12 @@
+bin/standardebooks
+build/rebook
+build/rebook-go-standardebooks.arm
+libs/boost
+libs/boost_1_75_0.tar.bz2
+libs/boost_1_75_0/
+libs/rmkit/
+src/._cpp/
+src/github.com/
+src/golang.org/
+src/google.golang.org/
+src/rebook-backend/standardebooks/rebook-go-standardebooks.x86
