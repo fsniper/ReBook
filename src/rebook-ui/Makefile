@@ -1,5 +1,5 @@
 EXE=rebook
-FILES=main.cpy scenes.cpy widgets.cpy exec.cpy
+FILES=main.cpy
 LIBS_DIR=../../libs
 
 ARCH?=arm
