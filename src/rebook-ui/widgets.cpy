@@ -21,6 +21,9 @@ class SearchInput: public ui::TextInput:
       self.search_for(s)
     ;
 
+  void before_render():
+    framebuffer::get()->waveform_mode = WAVEFORM_MODE_AUTO
+
   void search_for(std::string query):
     debug "Searching for", query
 
@@ -46,7 +49,7 @@ class SearchInput: public ui::TextInput:
           break;
 
 
-    pager := new ui::Pager(0, 0, 700, 500, NULL)
+    pager := new ui::Pager(0, 0, 700, 800, NULL)
     pager->options = options
     pager->setup_for_render()
     pager->events.selected += [=](std::string t):
