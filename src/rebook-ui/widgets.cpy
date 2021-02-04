@@ -12,20 +12,25 @@ using namespace boost::json
 class SearchInput: public ui::TextInput:
   private:
   ui::Pixmap* logo
+  ui::Text* log_line
 
   public:
 
-  SearchInput(int x, y, w, h, ui::Pixmap* logo, std::string t = "input"): TextInput(x, y, w, h, t):
+  SearchInput(int x, y, w, h, ui::Pixmap* logo, ui::Text* log_line, std::string t = "input"): TextInput(x, y, w, h, t):
     self->logo = logo
+    self->log_line = log_line
     self->events.done += PLS_LAMBDA(std::string &s):
       self.search_for(s)
+      self.text = ""
+      self.mark_redraw()
     ;
 
   void before_render():
     framebuffer::get()->waveform_mode = WAVEFORM_MODE_AUTO
 
   void search_for(std::string query):
-    debug "Searching for", query
+    self->log_line->text = "Searching for " + query
+    self->log_line->mark_redraw()
 
     std::stringstream quoted_query
     quoted_query << std::quoted(query)
@@ -53,7 +58,8 @@ class SearchInput: public ui::TextInput:
     pager->options = options
     pager->setup_for_render()
     pager->events.selected += [=](std::string t):
-      debug "Downloading", t
+      self->log_line->text = "Downloading " + t
+      self->log_line->mark_redraw()
 
       std::stringstream quoted_t
       quoted_t << std::quoted(std::string(urls.at(t)))
@@ -64,15 +70,14 @@ class SearchInput: public ui::TextInput:
       cmd = cmd + "' -url "
       cmd = cmd + quoted_t.str()
       cmd = cmd + " -path /home/root/"
-      debug cmd
       exec(cmd.c_str())
-      debug "end download"
+
+      self->log_line->text = "Downloaded " + t
+      self->log_line->mark_redraw()
       
       ui::MainLoop::hide_overlay()
       self->logo->mark_redraw()
-      self->text = ""
     ;
 
     self->logo->mark_redraw()
     pager->show()
-    debug result
