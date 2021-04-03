@@ -3,7 +3,7 @@
 
 The missing book store for remarkable. 
 
-Rebook is a standardebooks.com search and download application. 
+Rebook is a standardebooks.org search and download application. 
 
 Special thanks to:
 * https://rmkit.dev/apps/rmkit 
