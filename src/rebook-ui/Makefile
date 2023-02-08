@@ -6,7 +6,7 @@ ARCH?=arm
 CXX_BIN?=arm-linux-gnueabihf-g++
 CC_BIN?=arm-linux-gnueabihf-gcc
 CPP_FLAGS=-pthread -lpthread -fdata-sections -ffunction-sections -Wl,--gc-sections 
-CPP_FLAGS += -I${LIBS_DIR}/boost/ -I${LIBS_DIR}/rmkit/src 
+CPP_FLAGS += -I${LIBS_DIR}/boost/ -I${LIBS_DIR}/rmkit/src  -DRMKIT_IMPLEMENTATION
 
 
 OKP_FLAGS=-ni -I${LIBS_DIR}/boost/ -I${LIBS_DIR}/rmkit/src 
