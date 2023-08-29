@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+# Checking which arm-linux-gnueabihf-g++
+which  arm-linux-gnueabihf-g++ > /dev/null
+if [ ! $? -eq 0 ]; then
+  echo Please make sure that arm-linux-gnueabihf-g++ is installed and in the PATH.
+  echo  It can be installed via "g++-arm-linux-gnueabihf" package on Debian Bulsseye
+  exit 2
+fi
+
+which okp  > /dev/null
+if [ ! $? -eq 0 ]; then
+  echo Please make sure that okp is installed and in the PATH.
+  echo  It can be installed via "pip install okp"
+  exit 2
+fi
+
 BOOST_VERSION=1.77.0
 BOOST_NAME_VERSION=boost_$(echo $BOOST_VERSION | sed 's/\./_/g' -)
 BOOST_FILE=$BOOST_NAME_VERSION.tar.bz2
@@ -39,12 +54,10 @@ if [ ! -d rmkit ]; then
 fi
 
 if [ ! -d libs/rmkit ]; then
-    sleep 1
     mv rmkit libs/
 fi
 
 echo "***********************************************************"
-echo Make sure you have gcc-arm-linux-gnueabihf and okp installed
 echo Building rmkit.h
 cd libs/rmkit
 make rmkit.h
